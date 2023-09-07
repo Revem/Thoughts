@@ -12,6 +12,8 @@ const Thought = require('./models/Thought')
 const User = require('./models/User')
 
 const thoughtsRoutes = require('./routes/thoughtsRoutes')
+const authRoutes = require('./routes/authRoutes')
+
 const ThoughtsController = require('./controllers/ThoughtsController')
 
 app.engine('handlebars', exphbs.engine())
@@ -55,6 +57,7 @@ app.use((req, res, next) => {
   next()
 })
 
+app.use('/', authRoutes)
 app.use('/thoughts', thoughtsRoutes)
 
 app.get('/', ThoughtsController.showThoughts)

@@ -52,7 +52,7 @@ app.use(express.static('public'))
 
 app.use((req, res, next) => {
   if (req.session.userid) {
-    req.locals.session = req.session
+    res.locals.session = req.session
   }
   next()
 })
@@ -63,7 +63,7 @@ app.use('/thoughts', thoughtsRoutes)
 app.get('/', ThoughtsController.showThoughts)
 
 conn
-  //.sync({ force: true })
+  // .sync({ force: true })
   .sync()
   .then(() => {
     app.listen(3000)
